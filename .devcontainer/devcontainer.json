@@ -2,42 +2,33 @@
   "name": "Node & TypeScript",
   "build": {
     "dockerfile": "Dockerfile",
-    // Update 'VARIANT' to pick a Node version: 16, 14, 12.
-    // Append -bullseye or -buster to pin to an OS version.
-    // Use -bullseye variants on local on arm64/Apple Silicon.
     "args": {
-      "VARIANT": "20-bullseye",
+      "NODE_VERSION": "20",
+      "UBUNTU_VERSION": "bullseye",
+      "UBUNTU2_VERSION": "wuggi",
       "PNPM_VERSION": "8"
     }
   },
-
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "scss.lint.unknownAtRules": "ignore",
-    "tailwindCSS.experimental.classRegex": [
-      "[cC]lasses\\s*=\\s*`([\\s\\S]*?)`",
-      "tw`([^`]*)"
-    ]
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "scss.lint.unknownAtRules": "ignore",
+        "tailwindCSS.experimental.classRegex": [
+          "[cC]lasses\\s*=\\s*`([\\s\\S]*?)`",
+          "tw`([^`]*)"
+        ]
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "EditorConfig.EditorConfig",
+        "mikestead.dotenv",
+        "csstools.postcss",
+        "bradlc.vscode-tailwindcss",
+        "eamodio.gitlens",
+        "mutantdino.resourcemonitor"
+      ]
+    }
   },
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "EditorConfig.EditorConfig",
-    "mikestead.dotenv",
-    "csstools.postcss",
-    "bradlc.vscode-tailwindcss",
-    "clinyong.vscode-css-modules",
-    "eamodio.gitlens"
-  ],
-
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
-
-  // Use 'postCreateCommand' to run commands after the container is created.
-  // "postStartCommand": "",
-
-  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "node"
 }
